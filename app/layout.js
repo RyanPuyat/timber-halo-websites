@@ -1,5 +1,8 @@
-import Logo from './components/Logo';
-import Navigation from './components/Navigation';
+import Header from './_components/Header';
+import Logo from './_components/Logo';
+import Navigation from './_components/Navigation';
+
+import '@/app/_styles/globals.css';
 
 import { Josefin_Sans } from 'next/font/google';
 
@@ -9,19 +12,27 @@ const josefin = Josefin_Sans({
 });
 
 export const metadata = {
-  title: 'Timber Halo',
+  // title: 'The Timber Halo',
+  title: {
+    template: '%s  / The Timber Halo',
+    default: 'Welcome / The Timber Halo',
+  },
+
+  description:
+    'Luxurious cabin hotel located in the heart of the italian Dolomites, surrounded by beautiful mountains and dark forests.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${josefin.className}`}>
-        <header>
-          <Logo />
-        </header>
-        <Navigation />
-        <main>{children}</main>
-        <footer>All right reserved</footer>
+      <body
+        className={`${josefin.className} antialiased flex flex-col min-h-screen bg-primary-950 text-primary-100`}
+      >
+        <Header />
+        <div className="flex-1 px-8 py-12 grid">
+          <main className="max-w-7xl mx-auto w-full">{children}</main>
+        </div>
+        {/* <footer>All right reserved</footer> */}
       </body>
     </html>
   );
